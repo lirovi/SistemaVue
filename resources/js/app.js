@@ -9,4 +9,5 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.component('birthdaypicker', require('./components/datepicker.vue'));
 

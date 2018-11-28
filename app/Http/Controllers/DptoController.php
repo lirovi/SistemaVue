@@ -13,3 +13,21 @@ class DptoController extends Controller
         $dpto->nombre = $request->nombre;
         $dpto->save();
     }
+    public function delete($id)
+    {
+        $dpto = Dpto::find($id);
+        $cargos = $dpto->cargos()->get();
+        foreach ($cargos as $cargo) {
+            $cargo->funcionarios()->delete();
+        }
+        $dpto->cargos()->delete();
+        $dpto->delete();
+    }
+    public function update(Request $request)
+    {
+        $dpto = Dpto::find($request->id);
+        $dpto->nombre = $request->nombre;
+        $dpto->save();
+    }
+
+}
